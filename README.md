@@ -14,6 +14,19 @@ minted token, through fx(params). That genetic algorithm will in turn
 produce a generative art which should reflect the decisions taken in 
 the minting phase.  
 
+CHANGES
+---
+
+### 0.1.0
+
+Copy-pasted code from 
+<https://dev.to/lukegarrigan/genetic-algorithms-in-javascript-mc3> to test if 
+minting interface is working. Refactored code to adapt to fxhash boilerplate.  
+
+All the genetic car code and assets is copyright 
+[Luke Garrigan](https://dev.to/lukegarrigan) and will not make it to the final 
+token.  
+
 LICENSE
 ---
 

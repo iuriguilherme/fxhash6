@@ -1,78 +1,80 @@
-/**
-
-   ▄████████ ▀████    ▐████▀    ▄█    █▄       ▄████████  ▄████████    ▄█   ▄█▄    ▄████████     ███        ▄█    █▄     ▄██████▄  ███▄▄▄▄   
-  ███    ███   ███▌   ████▀    ███    ███     ███    ███ ███    ███   ███ ▄███▀   ███    ███ ▀█████████▄   ███    ███   ███    ███ ███▀▀▀██▄ 
-  ███    █▀     ███  ▐███      ███    ███     ███    ███ ███    █▀    ███▐██▀     ███    ███    ▀███▀▀██   ███    ███   ███    ███ ███   ███ 
- ▄███▄▄▄        ▀███▄███▀     ▄███▄▄▄▄███▄▄   ███    ███ ███         ▄█████▀      ███    ███     ███   ▀  ▄███▄▄▄▄███▄▄ ███    ███ ███   ███ 
-▀▀███▀▀▀        ████▀██▄     ▀▀███▀▀▀▀███▀  ▀███████████ ███        ▀▀█████▄    ▀███████████     ███     ▀▀███▀▀▀▀███▀  ███    ███ ███   ███ 
-  ███          ▐███  ▀███      ███    ███     ███    ███ ███    █▄    ███▐██▄     ███    ███     ███       ███    ███   ███    ███ ███   ███ 
-  ███         ▄███     ███▄    ███    ███     ███    ███ ███    ███   ███ ▀███▄   ███    ███     ███       ███    ███   ███    ███ ███   ███ 
-  ███        ████       ███▄   ███    █▀      ███    █▀  ████████▀    ███   ▀█▀   ███    █▀     ▄████▀     ███    █▀     ▀██████▀   ▀█   █▀  
-                                                                      ▀
- * This code serves as an example to demonstrate how to leverage the new param
- * features providing the backbones of the fxhackathon 2023: co-creation 
- * interfaces.
+/**!
+ * @file fxhash6  
+ * @version 0.1.0  
+ * @copyright Iuri Guilherme 2023  
+ * @license GNU AGPLv3  
+ * @author Iuri Guilherme <https://iuri.neocities.org/>  
+ * @description This is fxhash6 made with p5js for 
+ *  fxhash.xyz generative tokens. Source code available at Github: 
+ *  https://github.com/iuriguilherme/fxhash6  
  * 
- * A new update mode was made available: "code-driven". It comes as an addition
- * to the already-existing "page-reload" (default) and "sync" modes, which both
- * rely on a 1-way modulation of the params at mint time: interface with 
- * controls -> injected into the code.
+ * This program is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU Affero General Public License as published by the 
+ * Free Software Foundation, either version 3 of the License, or (at your 
+ * option) any later version.  
  * 
- * "code-driven" params are params which are only modulated from the code, not
- * from the fxhash minting interface. Which means that projects can now embed
- * their own minting interface, opening up the way of many novel use-cases.
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ * FITNESS FOR A PARTICULAR PURPOSE.  
+ * See the GNU Affero General Public License for more details.  
  * 
- * Moreover, a new context flag was introduced to make your code aware of the
- * context in which it's being ran: "standalone", "minting", "capture". With
- * the context flag, you can trigger your code to:
- *  - "standalone", "capture": display the final piece
- *  - "minting": display the minting interface
+ * You should have received a copy of the GNU Affero General Public License 
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.  
+ * 
  */
+
+/*
+ * 
+ *    ▄████████ ▀████    ▐████▀    ▄█    █▄       ▄████████  ▄████████    ▄█   ▄█▄    ▄████████     ███        ▄█    █▄     ▄██████▄  ███▄▄▄▄   
+ *   ███    ███   ███▌   ████▀    ███    ███     ███    ███ ███    ███   ███ ▄███▀   ███    ███ ▀█████████▄   ███    ███   ███    ███ ███▀▀▀██▄ 
+ *   ███    █▀     ███  ▐███      ███    ███     ███    ███ ███    █▀    ███▐██▀     ███    ███    ▀███▀▀██   ███    ███   ███    ███ ███   ███ 
+ *  ▄███▄▄▄        ▀███▄███▀     ▄███▄▄▄▄███▄▄   ███    ███ ███         ▄█████▀      ███    ███     ███   ▀  ▄███▄▄▄▄███▄▄ ███    ███ ███   ███ 
+ * ▀▀███▀▀▀        ████▀██▄     ▀▀███▀▀▀▀███▀  ▀███████████ ███        ▀▀█████▄    ▀███████████     ███     ▀▀███▀▀▀▀███▀  ███    ███ ███   ███ 
+ *   ███          ▐███  ▀███      ███    ███     ███    ███ ███    █▄    ███▐██▄     ███    ███     ███       ███    ███   ███    ███ ███   ███ 
+ *   ███         ▄███     ███▄    ███    ███     ███    ███ ███    ███   ███ ▀███▄   ███    ███     ███       ███    ███   ███    ███ ███   ███ 
+ *   ███        ████       ███▄   ███    █▀      ███    █▀  ████████▀    ███   ▀█▀   ███    █▀     ▄████▀     ███    █▀     ▀██████▀   ▀█   █▀  
+ *                                                                       ▀
+ * 
+*/
 
 import final from "./final";
 import minting from "./minting";
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// params are defined at the top-level
-// you must define the same params in minting and live context, otherwise the
-// project will break
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 $fx.params([
   {
-    id: "x",
-    name: "X pos",
-    type: "number",
-    update: "code-driven", // the parameter is manipulated with code
-    default: 0.5,
-    options: {
-      min: 0,
-      max: 1,
-      step: 0.000001,
-    },
-  },
-  {
-    id: "y",
-    name: "Y pos",
-    type: "number",
-    update: "code-driven", // the parameter is manipulated with code
-    default: 0.5,
-    options: {
-      min: 0,
-      max: 1,
-      step: 0.000001,
-    },
-  },
-  {
-    id: "size",
-    name: "Size",
+    id: "turning",
+    name: "Maximum turning angle",
     type: "number",
     update: "code-driven",
-    default: 0.02,
+    default: 0.05,
     options: {
-      min: 0.01,
-      max: 0.2,
-      step: 0.00001,
+      min: 0.0,
+      max: 1.0,
+      step: 0.01,
+    },
+  },
+  {
+    id: "mutation",
+    name: "Mutation Rate",
+    type: "number",
+    update: "code-driven",
+    default: 0.05,
+    options: {
+      min: 0.0,
+      max: 1.0,
+      step: 0.01,
+    },
+  },
+  {
+    id: "population",
+    name: "Population",
+    type: "number",
+    update: "code-driven",
+    default: 100,
+    options: {
+      min: 1,
+      max: 300,
+      step: 1,
     },
   },
 ]);
@@ -94,3 +96,7 @@ else {
   // $fx.context === "standalone" || $fx.context === "capture"
   final(); // see final.js for implementation
 }
+
+//~ window.$fxhashFeatures = {
+  //~ "Bezier Curves": featureVariant
+//~ }
